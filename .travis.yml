@@ -9,4 +9,3 @@ compiler:
 
 script:
   -  make -C tests
-
