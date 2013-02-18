@@ -1,0 +1,12 @@
+language: cpp
+
+branches:
+  only:
+    - master
+
+compiler:
+  - gcc
+
+script:
+  -  make -C tests
+
