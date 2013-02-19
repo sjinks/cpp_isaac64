@@ -3,6 +3,8 @@
 
 #include <cstdint>
 #include <limits>
+#include <cstring>
+#include <random>
 
 class isaac64_engine {
 public:
@@ -36,17 +38,18 @@ public:
 		this->init();
 	}
 
-	template<typename sseq>
-	void seed(sseq& s)
+	void seed(result_type s[256])
 	{
-		std::uint32_t vals[randsiz() << 1];
-		s.generate(vals, vals + (randsiz() << 1));
-
-		for (std::size_t i=0, j=0; i<randsiz()<<1; i+=2, ++j) {
-			this->m_randrsl[j] = (std::uint64_t(vals[i]) << 32) | vals[i+1];
-		}
-
+		std::memcpy(this->m_randrsl, s, sizeof(this->m_randrsl)); // sizeof(this->m_randrsl) = 2048, sizeof(s) = 8
 		this->init();
+	}
+
+	template<typename Sseq>
+	void seed(Sseq& s)
+	{
+		for (std::size_t i=0; i<randsiz(); ++i) {
+			this->m_randrsl[i] = s();
+		}
 	}
 
 	result_type operator()(void)
@@ -205,5 +208,18 @@ private:
 	isaac64_engine(const isaac64_engine&) = delete;
 	isaac64_engine& operator=(const isaac64_engine&) = delete;
 };
+
+template<>
+void isaac64_engine::seed(std::seed_seq& s)
+{
+	std::uint32_t vals[randsiz() << 1];
+	s.generate(vals, vals + (randsiz() << 1));
+
+	for (std::size_t i=0, j=0; i<randsiz()<<1; i+=2, ++j) {
+		this->m_randrsl[j] = (std::uint64_t(vals[i]) << 32) | vals[i+1];
+	}
+
+	this->init();
+}
 
 #endif // ISAAC64_ENGINE_H
