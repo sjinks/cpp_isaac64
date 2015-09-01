@@ -4,6 +4,8 @@ branches:
   only:
     - master
 
+sudo: false
+
 compiler:
   - gcc
 
