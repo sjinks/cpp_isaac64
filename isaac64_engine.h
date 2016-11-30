@@ -82,7 +82,7 @@ private:
 
 	void init(void)
 	{
-		int i;
+		std::size_t i;
 		std::uint64_t a = 0x9E3779B97F4A7C13LL;
 		std::uint64_t b = 0x9E3779B97F4A7C13LL;
 		std::uint64_t c = 0x9E3779B97F4A7C13LL;
