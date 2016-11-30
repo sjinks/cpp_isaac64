@@ -13,7 +13,7 @@ isaac32_test: isaac32_test.o
 	$(CXX) $^ $(LDFLAGS) -o $@
 
 %.o: %.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -c "$<" -o "$@"
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c "$<" -o "$@"
 
 isaac64_test.o: isaac64_test.cpp
 isaac32_test.o: isaac32_test.cpp
