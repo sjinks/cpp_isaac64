@@ -12,13 +12,13 @@ int main(int, char**)
 		uint64_t a[256];
 		for (j=0; j<256; ++j) {
 			std::uint64_t v = e();
-			a[255-j]=v;
+			a[255-j] = v;
 		}
 
 		for (j=0; j<256; ++j) {
 			std::uint64_t v = a[j];
-			std::printf("%.8x%.8x", (uint32_t)(v>>32), (uint32_t)v);
-			if ((j&3)==3) {
+			std::printf("%.8x%.8x", static_cast<uint32_t>(v>>32), static_cast<uint32_t>(v));
+			if ((j & 3) == 3) {
 				std::printf("\n");
 			}
 		}
