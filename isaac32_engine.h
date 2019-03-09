@@ -14,7 +14,7 @@ public:
 	static constexpr result_type min(void) { return std::numeric_limits<result_type>::min(); }
 	static constexpr result_type max(void) { return std::numeric_limits<result_type>::max(); }
 	static constexpr std::size_t randsizl(void) { return 8; }
-	static constexpr std::size_t randsiz(void)  { return 1 << isaac32_engine::randsizl(); }
+	static constexpr std::size_t randsiz(void)  { return 1ULL << isaac32_engine::randsizl(); }
 
 	explicit isaac32_engine(result_type value = default_seed)
 		: m_randcnt(0), m_randrsl(), m_mm(), m_aa(0), m_bb(0), m_cc(0)
