@@ -50,6 +50,8 @@ public:
 		for (std::size_t i=0; i<randsiz(); ++i) {
 			this->m_randrsl[i] = s();
 		}
+
+		this->init();
 	}
 
 	result_type operator()(void)
