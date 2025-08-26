@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Add error matcher
         run: echo "::add-matcher::$(pwd)/.github/problem-matcher-gcc.json"
